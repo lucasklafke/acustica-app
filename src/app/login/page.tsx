@@ -22,13 +22,13 @@ export default function Login() {
       <MainContentContainer>
         <div className="w-full">
           <label htmlFor="username">Username</label>
-          <input type="input" name="username" className="w-full h-10 p-1 text-sm border-2 border-details rounded-md text-gray-800"/>
+          <input type="input" name="username" className="w-full h-10 p-1 text-sm border-1 border-details rounded-md text-gray-800"/>
         </div>
         <div className="w-full">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" className="w-full h-10 p-1 border-2 border-details rounded-md text-gray-800"/>
+          <input type="password" id="password" name="password" className="w-full h-10 p-1 border-1 border-details rounded-md text-gray-800"/>
         </div>
-        <button className="w-32 p-1 border-2 border-details text rounded-md font-itim text-lg" onClick={login}>
+        <button className="w-32 p-1 border-1 border-details text rounded-md font-itim text-lg" onClick={login}>
           {loading? <LoadingSpinnerComponent type={ 'DualBall' } color={ '' } size={ '30px' } /> : 'Enter' }
         </button>
       </MainContentContainer>

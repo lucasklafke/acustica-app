@@ -17,6 +17,9 @@ module.exports = {
         details: "#2BACC8",
         default: "#2380AD",
       },
+      borderWidth: {
+        1: 1
+      }
     },
   },
   plugins: [],
