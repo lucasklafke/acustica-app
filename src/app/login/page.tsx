@@ -3,6 +3,7 @@ import Title from "@/components/common/Title";
 import { useState } from "react";
 import LoadingSpinnerComponent from 'react-spinners-components';
 import { useRouter } from "next/navigation";
+import MainContentContainer from "@/components/common/MainContentContainer";
 
 export default function Login() {
   const [loading, setLoading] = useState(false)
@@ -18,7 +19,7 @@ export default function Login() {
       <div className="absolute top-20">
         <Title />
       </div>
-      <div className="flex flex-col items-start justify-evenly h-fit gap-3 p-4 w-full max-w-xl rounded-md bg-white">
+      <MainContentContainer>
         <div className="w-full">
           <label htmlFor="username">Username</label>
           <input type="input" name="username" className="w-full h-10 p-1 text-sm border-2 border-details rounded-md text-gray-800"/>
@@ -30,7 +31,7 @@ export default function Login() {
         <button className="w-32 p-1 border-2 border-details text rounded-md font-itim text-lg" onClick={login}>
           {loading? <LoadingSpinnerComponent type={ 'DualBall' } color={ '' } size={ '30px' } /> : 'Enter' }
         </button>
-      </div>
+      </MainContentContainer>
     </div>
   )
 }
