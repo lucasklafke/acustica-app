@@ -8,11 +8,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        "default": "#2380AD",
+        default: "#2380AD",
       },
       fontFamily: {
-        "itim": ["Itim", "cursive"],
-      }
+        itim: ["Itim", "cursive"],
+      },
+      colors: {
+        details: "#2BACC8",
+        default: "#2380AD",
+      },
     },
   },
   plugins: [],
