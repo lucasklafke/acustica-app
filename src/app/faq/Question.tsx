@@ -1,13 +1,13 @@
 'use client'
-import { useState } from "react"
+import { useState } from "react";
 import { LiaAngleUpSolid, LiaAngleDownSolid } from "react-icons/lia";
-export default function Record() {
+
+export default function Question() {
   const [visible, setVisible] = useState(false)
+
   return (
-    <div className="flex flex-col w-full h-fit bg-white">
-      <h1 className="font-itim font-semibold text-lg p-1 sm:text-2xl">Sobre a Empresa Acústica</h1>
-      <div className="flex flex-col p-2 w-full h-fit rounded-md border-1 border-details" onClick={() => setVisible(!visible)}>
-        <div className="flex items-center justify-between">
+    <div className="flex flex-col pl-2 w-full h-fit bg-white  border-1 border-dashed border-black rounded-md" onClick={() => setVisible(!visible)}>
+        <div className="flex items-center p-1 justify-between ">
           <span className="font-semibold text-sm sm:text-base">O que é a acústica?</span>
           <div className="">
             {
@@ -20,7 +20,5 @@ export default function Record() {
         </div>
         {visible? <div>Somos uma empresa legal</div> : <></>}
       </div>
-      
-    </div>
   )
 }

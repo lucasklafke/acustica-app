@@ -9,10 +9,10 @@ export default function Home() {
       <MainContentContainer>
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-wrap justify-center w-full gap-2">
-              <Option text='Adicionar Registro' routeTo="/record/create">
+              <Option text='Adicionar Registro' routeTo="/faq/create">
                   <LiaPlusSolid size={36} />
               </Option>
-              <Option text='Editar Registro' routeTo="/record/edit">
+              <Option text='Editar Registro' routeTo="/faq/edit">
                   <LiaEdit size={36}/>
               </Option>
               <Option text='Histórico' routeTo="/record/create">
@@ -24,7 +24,7 @@ export default function Home() {
               <Option text='Editar Registro' routeTo="/record/edit">
                   <LiaEdit size={36}/>
               </Option>
-              <Option text='Visualizar Registros' routeTo="/record">
+              <Option text='Visualizar Registros' routeTo="/faq">
                   <LiaListSolid size={36}/>
               </Option>
           </div>

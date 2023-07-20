@@ -1,6 +1,37 @@
+'use client'
 import MainContentContainer from "@/components/common/MainContentContainer"
-import Record from "./Record"
+import { useEffect, useState } from "react"
+import MainCategory from "./MainCategory"
+import Record from "./MainCategory"
+import { categoryHooks } from "@/api/category/categoryHooks"
+import axios from "axios"
+
+export interface Categories {
+  id: number,
+  category: String,
+  createdAt: String,
+  parentId: null,
+  children: Categories[]
+  questions: question[]
+}
+export interface question {
+  id: Number,
+  categoryId: Number,
+  question: String,
+  answer: String,
+  createdAt: String
+}
+
 export default function Faq() {
+  const [categories, setCategories] = useState<Categories[]>([])
+  const fetchData = async () => {
+    const categories = await categoryHooks.findAll('')
+    console.log(categories)
+    setCategories(categories)
+  }
+  useEffect(() => {
+    fetchData()
+  },[])
   return (
     <div className="flex flex-col items-center w-screen overflow-x-hidden min-h-screen p-4 bg-default">
       <div className="flex text-center flex-col py-20">
@@ -8,20 +39,7 @@ export default function Faq() {
         <hr className="white w-60 sm:w-96 max-w-xl"/>
       </div>
       <MainContentContainer>
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-        <Record />
-
+        {categories.map((category) => <MainCategory key={category.id}  category={category}/>)}
       </MainContentContainer>
       
     </div>
