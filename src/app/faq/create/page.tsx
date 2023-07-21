@@ -45,17 +45,19 @@ export default function Home() {
     setLoading(true)
     if(selected === 'Pergunta') {
       const response = await questionHooks.create(questionForm)
-      const confirm = window.confirm()
-        if(confirm) {
-          router.push('/faq')
-        }
+      if(response.message) {
+        window.alert(response.message)
+      }else {
+        window.alert('created')
+        router.push('/faq')
+      }
     }if(selected === 'Categoria') {
       const response = await categoryHooks.create(categoryForm)
-      if(response){
-        const confirm = window.confirm()
-        if(confirm) {
-          router.push('/faq')
-        }
+      if(response.message) {
+        window.alert(response.message)
+      }else {
+        window.alert('created')
+        router.push('/faq')
       }
     }
   }

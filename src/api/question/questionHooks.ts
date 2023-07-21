@@ -23,8 +23,14 @@ const findOne = async (id:number) => {
 }
 
 const update = async (question: question) => {
+  const token = window.localStorage.getItem('access_token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
     try{
-      const response = await axios.patch(`http://localhost:3000/question/${question.id}`, question)
+      const response = await axios.patch(`http://localhost:3000/question/${question.id}`, question, config)
       return response.data
     }catch(err){
       console.log(err)
@@ -32,12 +38,18 @@ const update = async (question: question) => {
     }
 }
 const create = async (data: QuestionForm) => {
+  const token = window.localStorage.getItem('access_token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
   data.categoryId = Number(data.categoryId)
     try{
-      const response = await axios.post(`http://localhost:3000/question`, data)
+      const response = await axios.post(`http://localhost:3000/question`, data, config)
+      return response.data
     }catch(err){
-      console.log(err)
-      return []
+      return err
     }
 }
 

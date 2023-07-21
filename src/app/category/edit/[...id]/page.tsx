@@ -25,14 +25,13 @@ export default function EditCategory() {
     event.preventDefault()
     setLoading(true)
     const response = await categoryHooks.update(category)
-    if(response){
-      setTimeout(() => {
-        const confirm = window.confirm('updated')
-        if(confirm) {
-          router.push('/faq/edit')
-        }
-      }, 1000);
-    }
+      if(response.message) {
+        window.alert(response.message)
+        setLoading(false)
+      } else {
+        window.alert('updated')
+        router.push('/faq/edit')
+      }
     
   }
   const fetchData = async () => {

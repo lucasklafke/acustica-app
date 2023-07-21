@@ -9,7 +9,7 @@ const findAll = async (query: string) => {
       return response.data
     }catch(err){
       console.log(err)
-      return []
+      return err
     }
 }
 const findOne = async (id:number) => {
@@ -18,29 +18,41 @@ const findOne = async (id:number) => {
       return response.data
     }catch(err){
       console.log(err)
-      return []
+      return err
     }
 }
 
 const update = async (category: Category) => {
+  const token = window.localStorage.getItem('access_token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
     try{
-      const response = await axios.patch(`http://localhost:3000/category/${category.id}`, category)
+      const response = await axios.patch(`http://localhost:3000/category/${category.id}`, category, config)
       return response.data
     }catch(err){
       console.log(err)
-      return []
+      return err
     }
 }
 const create = async (data: CategoryForm) => {
+  const token = window.localStorage.getItem('access_token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
   if(data.parentId !== null) {
     data.parentId = Number(data.parentId)
   }
     try{
-      const response = await axios.post(`http://localhost:3000/category`, data)
-      console.log(response)
+      const response = await axios.post(`http://localhost:3000/category`, data, config)
+      return response.data
     }catch(err){
       console.log(err)
-      return []
+      return err
     }
 }
 
