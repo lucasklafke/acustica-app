@@ -1,9 +1,9 @@
-import { Category } from "@/app/category/edit/[...id]/page"
+import { question } from "@/app/faq/page"
 import axios from "axios"
 
 const findAll = async (query: string) => {
     try{
-      const response = await axios.get(`http://localhost:3000/category${query}`)
+      const response = await axios.get(`http://localhost:3000/question${query}`)
       console.log(response.data)
       return response.data
     }catch(err){
@@ -13,7 +13,7 @@ const findAll = async (query: string) => {
 }
 const findOne = async (id:number) => {
     try{
-      const response = await axios.get(`http://localhost:3000/category/${id}`)
+      const response = await axios.get(`http://localhost:3000/question/${id}`)
       return response.data
     }catch(err){
       console.log(err)
@@ -21,9 +21,9 @@ const findOne = async (id:number) => {
     }
 }
 
-const update = async (category: Category) => {
+const update = async (question: question) => {
     try{
-      const response = await axios.patch(`http://localhost:3000/category/${category.id}`, category)
+      const response = await axios.patch(`http://localhost:3000/question/${question.id}`, question)
       return response.data
     }catch(err){
       console.log(err)
@@ -31,7 +31,7 @@ const update = async (category: Category) => {
     }
 }
 
-export const categoryHooks = {
+export const questionHooks = {
   findAll,
   findOne,
   update

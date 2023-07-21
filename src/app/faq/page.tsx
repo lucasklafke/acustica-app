@@ -15,11 +15,11 @@ export interface Categories {
   questions: question[]
 }
 export interface question {
-  id: Number,
-  categoryId: Number,
-  question: String,
-  answer: String,
-  createdAt: String
+  id: Number | null,
+  categoryId: Number | null,
+  question: string,
+  answer: string,
+  createdAt: string
 }
 
 export default function Faq() {
