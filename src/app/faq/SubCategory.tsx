@@ -30,7 +30,7 @@ export default function SubCategory(props: Props) {
           category.questions.length > 0? category.questions.map((question) => 
             <div key={Number(question.id)} className="w-full p-2 rounded-sm">
               <span className="text-base ">Pergunta</span>
-              <Question />
+              <Question question={question}/>
             </div>
             ) : <></>
             : <></>

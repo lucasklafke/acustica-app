@@ -8,8 +8,8 @@ import axios from "axios"
 
 export interface Categories {
   id: number,
-  category: String,
-  createdAt: String,
+  category: string,
+  createdAt: string,
   parentId: null,
   children: Categories[]
   questions: question[]

@@ -1,3 +1,4 @@
+import { QuestionForm } from "@/app/faq/create/page"
 import { question } from "@/app/faq/page"
 import axios from "axios"
 
@@ -30,9 +31,19 @@ const update = async (question: question) => {
       return []
     }
 }
+const create = async (data: QuestionForm) => {
+  data.categoryId = Number(data.categoryId)
+    try{
+      const response = await axios.post(`http://localhost:3000/question`, data)
+    }catch(err){
+      console.log(err)
+      return []
+    }
+}
 
 export const questionHooks = {
   findAll,
   findOne,
-  update
+  update,
+  create
 }

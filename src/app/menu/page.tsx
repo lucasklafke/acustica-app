@@ -15,15 +15,6 @@ export default function Home() {
               <Option text='Editar Registro' routeTo="/faq/edit">
                   <LiaEdit size={36}/>
               </Option>
-              <Option text='Histórico' routeTo="/record/create">
-                  <LiaHistorySolid size={36}/>
-              </Option>
-              <Option text='Adicionar Categoria' routeTo="/category/create">
-                  <LiaPlusSolid size={36}/>
-              </Option>
-              <Option text='Editar Registro' routeTo="/record/edit">
-                  <LiaEdit size={36}/>
-              </Option>
               <Option text='Visualizar Registros' routeTo="/faq">
                   <LiaListSolid size={36}/>
               </Option>
