@@ -3,26 +3,29 @@ import { CategoryForm, QuestionForm } from "@/app/faq/create/page"
 import axios from "axios"
 
 const findAll = async (query: string) => {
-    try{
-      const response = await axios.get(`http://localhost:3000/category${query}`)
-      console.log(response.data)
-      return response.data
-    }catch(err){
-      console.log(err)
-      return err
-    }
+  const url = process.env.NEXT_PUBLIC_API_URL
+
+  try{
+    const response = await axios.get(`${url}/category${query}`)
+    return response.data
+  }catch(err){
+    return err
+  }
 }
 const findOne = async (id:number) => {
-    try{
-      const response = await axios.get(`http://localhost:3000/category/${id}`)
-      return response.data
-    }catch(err){
-      console.log(err)
-      return err
-    }
+  const url = process.env.NEXT_PUBLIC_API_URL
+
+  try{
+    const response = await axios.get(`${url}/category/${id}`)
+    return response.data
+  }catch(err){
+    return err
+  }
 }
 
 const update = async (category: Category) => {
+  const url = process.env.NEXT_PUBLIC_API_URL
+
   const token = window.localStorage.getItem('access_token')
   const config = {
     headers: {
@@ -30,14 +33,14 @@ const update = async (category: Category) => {
     }
   }
     try{
-      const response = await axios.patch(`http://localhost:3000/category/${category.id}`, category, config)
+      const response = await axios.patch(`${url}/category/${category.id}`, category, config)
       return response.data
     }catch(err){
-      console.log(err)
       return err
     }
 }
 const create = async (data: CategoryForm) => {
+  const url = process.env.NEXT_PUBLIC_API_URL
   const token = window.localStorage.getItem('access_token')
   const config = {
     headers: {
@@ -48,10 +51,9 @@ const create = async (data: CategoryForm) => {
     data.parentId = Number(data.parentId)
   }
     try{
-      const response = await axios.post(`http://localhost:3000/category`, data, config)
+      const response = await axios.post(`${url}/category`, data, config)
       return response.data
     }catch(err){
-      console.log(err)
       return err
     }
 }

@@ -6,8 +6,8 @@ import { categoryHooks } from "@/api/category/categoryHooks"
 
 export interface Categories {
   id: number,
-  category: String,
-  createdAt: String,
+  category: string,
+  createdAt: string,
   parentId: null,
   children: Categories[]
   questions: question[]
@@ -15,16 +15,15 @@ export interface Categories {
 export interface question {
   id: Number,
   categoryId: Number,
-  question: String,
-  answer: String,
-  createdAt: String
+  question: string,
+  answer: string,
+  createdAt: string
 }
 
 export default function Faq() {
   const [categories, setCategories] = useState<Categories[]>([])
   const fetchData = async () => {
     const categories = await categoryHooks.findAll('')
-    console.log(categories)
     setCategories(categories)
   }
   useEffect(() => {
@@ -39,7 +38,6 @@ export default function Faq() {
       <MainContentContainer>
         {categories.map((category) => <MainCategory key={category.id}  category={category}/>)}
       </MainContentContainer>
-      
     </div>
   )
 }

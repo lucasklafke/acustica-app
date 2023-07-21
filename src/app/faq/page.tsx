@@ -27,7 +27,6 @@ export default function Faq() {
   const [categories, setCategories] = useState<Categories[]>([])
   const fetchData = async () => {
     const categories = await categoryHooks.findAll('')
-    console.log(categories)
     setCategories(categories)
   }
   useEffect(() => {

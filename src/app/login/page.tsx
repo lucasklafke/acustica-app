@@ -24,9 +24,10 @@ export default function Login() {
         window.localStorage.setItem("access_token", response.access_token)
         router.push('/menu')
     }, 3000);
-  }else {
-    window.alert('Usuário inválido')
-  }
+    }else {
+      setLoading(false)
+      window.alert('Usuário inválido')
+    }
   } 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-default">
