@@ -1,5 +1,5 @@
 import { Category } from "@/app/category/edit/[...id]/page"
-import { QuestionForm } from "@/app/faq/create/page"
+import { CategoryForm, QuestionForm } from "@/app/faq/create/page"
 import axios from "axios"
 
 const findAll = async (query: string) => {
@@ -31,7 +31,10 @@ const update = async (category: Category) => {
       return []
     }
 }
-const create = async (data: QuestionForm) => {
+const create = async (data: CategoryForm) => {
+  if(data.parentId !== null) {
+    data.parentId = Number(data.parentId)
+  }
     try{
       const response = await axios.post(`http://localhost:3000/category`, data)
       console.log(response)

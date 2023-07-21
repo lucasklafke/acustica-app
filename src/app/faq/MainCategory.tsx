@@ -13,7 +13,7 @@ export default function MainCategory(props:Props) {
   return (
     <div className="w-full h-fit p-2 border-1 border-dashed rounded-lg">
       <div className="flex w-full justify-between" onClick={() => setVisible(!visible)}>
-        <h1 className="font-itim text-4xl font-semibold">{category.category}</h1>
+        <h1 className="font-itim text-xl sm:text-4xl font-semibold">{category.category}</h1>
         <div className="">
               {
                 visible ?

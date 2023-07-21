@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import MainCategory from "./MainCategory"
 import { categoryHooks } from "@/api/category/categoryHooks"
 import axios from "axios"
+import Header from "@/components/common/Header"
 
 export interface Categories {
   id: number,
@@ -33,6 +34,7 @@ export default function EditFaq() {
   },[])
   return (
     <div className="flex flex-col items-center w-screen overflow-x-hidden min-h-screen p-4 bg-default">
+      <Header />
       <div className="flex text-center flex-col py-20">
         <h1 className="font-itim text-5xl font-bold  text-white p-2">FAQ</h1>
         <hr className="white w-60 sm:w-96 max-w-xl"/>

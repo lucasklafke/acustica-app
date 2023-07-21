@@ -3,6 +3,8 @@ import { categoryHooks } from "@/api/category/categoryHooks";
 import { questionHooks } from "@/api/question/questionHooks";
 import Header from "@/components/common/Header";
 import MainContentContainer from "@/components/common/MainContentContainer";
+import { useRouter } from "next/navigation";
+import Router from "next/router";
 import { FormEvent, useEffect, useState } from "react";
 import LoadingSpinnerComponent from "react-spinners-components";
 import { Categories } from "../page";
@@ -10,6 +12,10 @@ export interface QuestionForm {
   question: string,
     answer: string,
     categoryId: number | string
+}
+export interface CategoryForm {
+  category: string,
+  parentId: number
 }
 export default function Home() {
   const [selected, setSelected] = useState<string>('')
@@ -20,6 +26,12 @@ export default function Home() {
     answer: '',
     categoryId: ''
   })
+  const [categoryForm, setCategoryForm] = useState<CategoryForm>({
+    category: '',
+    parentId: 0
+  })
+  const router = useRouter()
+
   const fetchData = async () => {
     const categories = await categoryHooks.findAll('?all=true')
     setCategories(categories)
@@ -28,11 +40,23 @@ export default function Home() {
     fetchData()
   }, [])
 
-  const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setLoading(true)
     if(selected === 'Pergunta') {
-      questionHooks.create(questionForm)
+      const response = await questionHooks.create(questionForm)
+      const confirm = window.confirm()
+        if(confirm) {
+          router.push('/faq')
+        }
+    }if(selected === 'Categoria') {
+      const response = await categoryHooks.create(categoryForm)
+      if(response){
+        const confirm = window.confirm()
+        if(confirm) {
+          router.push('/faq')
+        }
+      }
     }
   }
   return (
@@ -50,12 +74,16 @@ export default function Home() {
           {selected === 'Categoria'?
             <div className="flex flex-col items-center w-full">
             <label htmlFor="">Nome da categoria</label>
-            <input type="text" className="w-2/3 border-1 border-details rounded-md p-2"/>
+            <input type="text" className="w-2/3 border-1 border-details rounded-md p-2"
+            value={categoryForm.category} onChange={(event) => setCategoryForm({...categoryForm, category: event.target.value})}
+            />
             <label htmlFor="">Pertence à categoria:</label>
-            <select name="" id="" className="w-2/3 p-2 bg-white border-1 border-details rounded-md">
-              <option value='null'>nenhuma</option>
+            <select name="" id="" defaultValue={0} className="w-2/3 p-2 bg-white border-1 border-details rounded-md"
+            onChange={(event) => setCategoryForm({...categoryForm, parentId: Number(event.target.value)})}
+            >
+              <option value={0}>nenhuma</option>
               {categories.map((category) => 
-                <option value={category.category} key={category.id}>{category.category}</option>
+                <option value={Number(category.parentId)} key={category.id}>{category.category}</option>
               )}
             </select>
             </div>
